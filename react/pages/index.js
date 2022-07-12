@@ -52,7 +52,7 @@ function CurrentStocks({setMStocks, balance, setBalance}) {
     <section>
       <h2 className="h3">Precios Actuales de las Acciones:</h2>
       <h3>Saldo restante: ${+balance.toFixed(2)}</h3>
-      <StockPrice stocks={stocks} setStocks={setStocks} setMStocks={setMStocks} />
+      <StockPrice balance={balance} stocks={stocks} setStocks={setStocks} setMStocks={setMStocks} />
     </section>
   );
 }

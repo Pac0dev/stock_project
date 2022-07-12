@@ -1,6 +1,9 @@
 import React from 'react'
 
 const OwnedStocks = ({stocks}) => {
+  if(!stocks || !stocks.length) {
+    return (<div className="stock-list row --none"><p className="col-12">No has comprado acciones aun.</p></div>)
+  }
     return (
         <div className='table-responsive'>
           <table className='table table-striped'>

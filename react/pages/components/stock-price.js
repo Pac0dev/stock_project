@@ -7,9 +7,10 @@ const StockPrice = ({stocks, setStocks, setMStocks, balance}) => {
 
   const handleBuyStock = (stock, quantity) => {
     stock.quantity = stock.quantity ? stock.quantity + quantity : stock.quantity = quantity;
-    console.log(balance, stock.price * quantity)
     if(balance - (+stock.price * +quantity) <= 0) return;
+
     setStocks(stocks => stocks.map(s => s.symbol === stock.symbol ? stock : s));
+    //not repeat objects and just increase quantity
     setMStocks((mStocks) => {
       if(mStocks?.some(s => s.symbol === stock.symbol)) {
         return mStocks.map(s => s.symbol === stock.symbol ? stock : s);

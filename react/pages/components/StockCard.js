@@ -7,7 +7,7 @@ function StockCard({stock, handleBuyStock}) {
             <h3 className="h5 card-title">{stock.symbol}</h3>
             <div className="card-body">{stock.price}</div>
             <div className="card-footer d-inline-flex p-2 bd-highlight">
-              <button onClick={() => handleBuyStock(stock, quantity)}>Comprar</button>
+              <button className="btn btn-primary" onClick={() => handleBuyStock(stock, quantity)}>Comprar</button>
               <input
                 min={1}
                 type='number'
