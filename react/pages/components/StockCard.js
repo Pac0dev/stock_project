@@ -1,13 +1,19 @@
 import { useState } from "react";
+import styles from '../styles.module.css';
 function StockCard({stock, handleBuyStock}) {
   const [quantity, setQuantity] = useState(1);
   return (
     <>
-          <div className="card col-sm m-2" key={stock.symbol}>
-            <h3 className="h5 card-title">{stock.symbol}</h3>
-            <div className="card-body">{stock.price}</div>
-            <div className="card-footer d-inline-flex p-2 bd-highlight">
-              <button className="btn btn-primary" onClick={() => handleBuyStock(stock, quantity)}>Comprar</button>
+          <div className={styles.card} key={stock.symbol}>
+            <h3 className={styles.title}>{stock.symbol}</h3>
+            <span className={styles.price}>${stock.price}</span>
+            <div className={styles.footer}>
+              <button className="btn btn-primary mr-2" onClick={() => {
+                handleBuyStock(stock, quantity);
+                setQuantity(1);
+              }}>
+                Comprar
+              </button>
               <input
                 min={1}
                 type='number'

@@ -2,16 +2,20 @@ import {Component, useEffect, useState} from 'react'
 import Head from 'next/head'
 import StockPrice from './components/stock-price';
 import OwnedStocks from "./components/owned-stocks";
+import styles from './styles.module.css';
+import Modal from './components/modal';
 
 export default function Home() {
   const [mStocks, setMStocks] = useState([]);
   const [balance, setBalance] = useState(15000);
+
   useEffect(() => {
     const price = mStocks.reduce((acc, stock) => acc + stock.price * stock.quantity, 0);
     setBalance( (15000 - price.toFixed(2) >= 0) ? 15000 - price.toFixed(2) : 0);
   }, [mStocks] )
+
   return (
-    <div>
+    <div className={styles.app}>
       <Head>
         <title>Rastreador de Acciones</title>
         <link rel="icon" href="/favicon.ico"/>
@@ -27,9 +31,9 @@ export default function Home() {
 
 function Heading() {
   return (
-    <div>
+    <div className='bg-dark text-white pb-2 pt-2 mb-4'>
       <h1>Bienvenido al Rastreador de Acciones!</h1>
-      <style jsx>{` div { text-align: center; }`}</style>
+      <style jsx>{` div { text-align: center; } h1{font-size: 1.825rem}`}</style>
     </div>
   );
 }
@@ -51,8 +55,8 @@ function CurrentStocks({setMStocks, balance, setBalance}) {
   return (
     <section>
       <h2 className="h3">Precios Actuales de las Acciones:</h2>
-      <h3>Saldo restante: ${+balance.toFixed(2)}</h3>
       <StockPrice balance={balance} stocks={stocks} setStocks={setStocks} setMStocks={setMStocks} />
+      <h3>Saldo restante: ${+balance.toFixed(2)}</h3>
     </section>
   );
 }
